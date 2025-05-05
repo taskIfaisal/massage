@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web Pengirim</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+</head>
+
+<body>
+    <h2>Web Pengirim</h2>
+    <input type="text" id="inputText" placeholder="Ketik sesuatu (misal: 12345)">
+    <button onclick="kirimKeFirebase()">Kirim</button>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEmMaofxL1_ciX0wQn2X9DRM_WZFP-q9M",
+            authDomain: "magic--control.firebaseapp.com",
+            databaseURL: "https://magic--control-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "magic--control",
+            storageBucket: "magic--control.firebasestorage.app",
+            messagingSenderId: "1040027506886",
+            appId: "1:1040027506886:web:e70e085b3d57f0e765dfc7",
+            measurementId: "G-0KSWHKL03D"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        function kirimKeFirebase() {
+            const teks = document.getElementById('inputText').value;
+            db.ref("pesan").set({
+                isi: teks,
+                timestamp: Date.now()
+            });
+        }
+    </script>
+</body>
+
+</html>
